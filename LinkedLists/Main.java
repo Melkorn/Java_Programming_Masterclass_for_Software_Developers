@@ -1,8 +1,6 @@
 package LinkedLists;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.ListIterator;
+import java.util.*;
 
 public class Main {
 
@@ -41,21 +39,118 @@ public static void main(String[] args) {
 }
 
 private static void play(LinkedList<Song> playList){
+    Scanner scanner = new Scanner(System.in);
     ListIterator<Song> listIterator = playList.listIterator();
     if(playList.size() == 0) {
         System.out.println("No songs in this playlist");
     } else {
         boolean quit = false;
+        boolean forward = true;
         System.out.println(" Playing " + listIterator.next().toString());
 
-   // while(quit){
-   //     System.out.println(" ");
+        while(!quit){
 
-  //  }
+
+
+            System.out.println(" Press: " +
+                    "1 - to Quit" +
+                    "2 - to play next song" +
+                    "3 - to play previous song" +
+                    "4 - reply current song" +
+                    "5 - to show all songs inf playlist" +
+                    "6 - to print menu" +
+                    "7 - to delete current song");
+
+            int input = scanner.nextInt();
+        switch (input){
+            case 1:
+                System.out.println("Exiting playList");
+                quit = true;
+                break;
+            case 2:
+                if(!forward){
+                    if(listIterator.hasNext()){
+                        listIterator.next();
+                    }
+                    forward = true;
+
+                }
+                if(listIterator.hasNext()) {
+                    System.out.println("Now playing  " + listIterator.next().toString());
+                } else {
+                    System.out.println("The End of PlayList");
+                    forward = false;
+                }
+                break;
+            case 3:
+                if(forward){
+                    if(listIterator.hasPrevious()){
+                        listIterator.previous();
+                    }
+                    forward = false;
+                }
+                if(listIterator.hasPrevious()) {
+                    System.out.println("Now playing  " + listIterator.previous().toString());
+                } else {
+                    System.out.println("The Start of PlayList");
+                    forward = true;
+                }
+                break;
+            case 4:
+                if(forward){
+                    if(listIterator.hasPrevious()){
+                        System.out.println(" Now playing " + listIterator.previous().toString());
+                        forward = false;
+                    } else {
+                        System.out.println(" You are on the Start, no song to reply");
+                    }
+                } else {
+                    if(listIterator.hasNext()){
+                        System.out.println(" Now playing " + listIterator.next().toString());
+                        forward = true
+                    } else {
+                        System.out.println(" The end of playList no song to reply");
+                    }
+                }
+                break;
+            case 5:
+                printList(playList);
+                break;
+            case 6:
+                printMenu();
+                break;
+            case 7:
+                if(playList.size() > 0){
+                    listIterator.remove();
+                    System.out.println("Song removed from playlist");
+                }
+                break;
+        }
+        }
 
 
     }
 
+}
+
+public static void printList(LinkedList <Song> list){
+    Iterator<Song> iterator = list.iterator();
+    System.out.println(" ------------------------");
+    while (iterator.hasNext()){
+        System.out.println(iterator.next());
+    }
+    System.out.println(" ------------------------");
+}
+
+public static void printMenu(){
+    System.out.println(" Press: " +
+            "1 - to Quit" +
+            "2 - to play next song" +
+            "3 - to play previous song" +
+            "4 - reply current song" +
+            "5 - to show all songs inf playlist" +
+            "6 - to print menu" +
+            "7 - to delete current song");
 }
 
 
