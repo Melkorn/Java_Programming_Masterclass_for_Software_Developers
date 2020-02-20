@@ -53,13 +53,13 @@ private static void play(LinkedList<Song> playList){
 
 
             System.out.println(" Press: " +
-                    "1 - to Quit" +
-                    "2 - to play next song" +
-                    "3 - to play previous song" +
-                    "4 - reply current song" +
-                    "5 - to show all songs inf playlist" +
-                    "6 - to print menu" +
-                    "7 - to delete current song");
+                    "1 - to Quit \n" +
+                    "2 - to play next song\n" +
+                    "3 - to play previous song\n" +
+                    "4 - reply current song\n" +
+                    "5 - to show all songs inf playlist\n" +
+                    "6 - to print menu\n" +
+                    "7 - to delete current song\n");
 
             int input = scanner.nextInt();
         switch (input){
@@ -107,7 +107,7 @@ private static void play(LinkedList<Song> playList){
                 } else {
                     if(listIterator.hasNext()){
                         System.out.println(" Now playing " + listIterator.next().toString());
-                        forward = true
+                        forward = true;
                     } else {
                         System.out.println(" The end of playList no song to reply");
                     }
@@ -123,7 +123,14 @@ private static void play(LinkedList<Song> playList){
                 if(playList.size() > 0){
                     listIterator.remove();
                     System.out.println("Song removed from playlist");
-                }
+                    if(forward){
+                        if(listIterator.hasNext()){
+                            listIterator.next();
+                        } else System.out.println("Start of the playlist, no song to remove");
+                    } else  if(listIterator.hasPrevious()){
+                        listIterator.previous();
+                    } else System.out.println("Start of the playlist, no song to remove");
+                } else System.out.println(" No song to remove");
                 break;
         }
         }
@@ -143,14 +150,14 @@ public static void printList(LinkedList <Song> list){
 }
 
 public static void printMenu(){
-    System.out.println(" Press: " +
-            "1 - to Quit" +
-            "2 - to play next song" +
-            "3 - to play previous song" +
-            "4 - reply current song" +
-            "5 - to show all songs inf playlist" +
-            "6 - to print menu" +
-            "7 - to delete current song");
+    System.out.println(" Press: \n" +
+            "1 - to Quit\n" +
+            "2 - to play next song\n" +
+            "3 - to play previous song\n" +
+            "4 - reply current song\n" +
+            "5 - to show all songs inf playlist\n" +
+            "6 - to print menu\n" +
+            "7 - to delete current song\n");
 }
 
 
