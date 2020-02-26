@@ -8,6 +8,39 @@ public class Monster implements ISavable {
    private int hp;
    private int strength;
 
+    @Override
+    public String toString() {
+        return "Monster{" +
+                "name='" + name + '\'' +
+                ", hp=" + hp +
+                ", strength=" + strength +
+                '}';
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
     public Monster(String name, int hp, int strength) {
         this.name = name;
         this.hp = hp;
